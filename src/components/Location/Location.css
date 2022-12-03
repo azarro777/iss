@@ -1,0 +1,17 @@
+.location {
+  height: 10vh;
+  border: 1px solid black;
+}
+
+.location__title {
+  font-size: 1.5rem;
+  font-weight: 400;
+  margin: 10px 0 0 10px;
+}
+
+.location__coords {
+  font-size: 1rem;
+  font-weight: 400;
+  margin: 0;
+  margin-left: 10px;
+}

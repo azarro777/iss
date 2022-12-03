@@ -1,0 +1,12 @@
+.crew {
+  border: 1px solid black;
+  overflow: scroll;
+  height: 70vh;
+  margin-top: 10px;
+}
+
+.crew p {
+  font-size: 1.5rem;
+  font-weight: 400;
+  margin: 10px 0 0 10px;
+}
