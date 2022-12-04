@@ -1,6 +1,6 @@
 .date {
   height: 10vh;
-  border: 1px solid black;
+  border: 1px solid var(--border-color);
 }
 
 .date__current {

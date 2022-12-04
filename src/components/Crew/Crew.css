@@ -1,5 +1,5 @@
 .crew {
-  border: 1px solid black;
+  border: 1px solid var(--border-color);
   overflow: scroll;
   height: 70vh;
   margin-top: 10px;

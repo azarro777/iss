@@ -14,9 +14,7 @@ function App() {
 
   console.log('state', coords); //! state
   
-
   const [scriptLoaded, setScriptLoaded] = useState(false);
-  const [distanceInKm, setDistanceInKm] = useState<number>(-1);
 
   useEffect(() => {
     setInterval(() => {
@@ -30,14 +28,6 @@ function App() {
     });
   }, []);
 
-  const renderDistanceSentence = () => { //! distance
-    return (
-      <div className='distance-info'>
-        {`Distance between selected marker and home address is ${distanceInKm}km.`}
-      </div>
-    );
-  };
-
   return (
     <div className='app'>
       <div className='app__map-container'>
@@ -46,10 +36,8 @@ function App() {
           <Map
             mapType={google.maps.MapTypeId.ROADMAP}
             mapTypeControl={true}
-            setDistanceInKm={setDistanceInKm}
           />
         )}
-        {distanceInKm > -1 && renderDistanceSentence()}
       </div>
       <div className='app__people-container'>
         <Date/>
