@@ -12,26 +12,25 @@ const initialState: IIss = {
       longitude: "",
     },
   },
-  isLoading: false,
-  error: "",
+  scriptLoaded: false,
 };
 
 export const locationSlice = createSlice({
   name: "location",
   initialState,
-  reducers: {},
+  reducers: {
+    script: (state) => {
+      state.scriptLoaded = true;
+    }
+  },
   extraReducers: (builder) => {
-    builder.addCase(fetchIissCoords.pending.type, (state) => {
-      console.log("loading"); //! LOading feature!
-    });
+    builder.addCase(fetchIissCoords.pending.type, (state) => {});
     builder.addCase(fetchIissCoords.fulfilled.type, (state, action: PayloadAction<ICoordsObj>) => {
       state.coords = action.payload;
-      console.log("fullfiled", state, action.payload); //! Console log!
     });
-    builder.addCase(fetchIissCoords.rejected.type, (state, action: PayloadAction) => {
-      console.log("error", action.payload); //! Console log!
-    });
+    builder.addCase(fetchIissCoords.rejected.type, (state, action: PayloadAction) => {});
   },
 });
 
+export const {script} = locationSlice.actions;
 export default locationSlice.reducer;
