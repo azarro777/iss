@@ -1,25 +1,20 @@
 import React, { useEffect, useRef, useState } from "react";
 import { useAppSelector } from "../../hooks/hooks";
 import IMap from "../../utils/interfaces/IMap.interface";
-import IMarker from "../../utils/interfaces/IMarker.interface";
 import { GoogleLatLng, GoogleMap, GoogleMarker } from "../../utils/types/types";
 import "./Map.css";
 
 export const Map: React.FC<IMap> = ({ mapType, mapTypeControl = false }) => {
   const coords = useAppSelector((state) => state.locationSlice.coords);
-  console.log(coords.iss_position.longitude); //!
 
   const ref = useRef<HTMLDivElement>(null);
   const [map, setMap] = useState<GoogleMap>();
-  const [marker, setMarker] = useState<IMarker>();
-
-  console.log("marker", marker); //! marker;
 
   const startMap = (): void => {
     const defaultAddress = new google.maps.LatLng(
       +coords.iss_position.latitude,
       +coords.iss_position.longitude
-    ); //! default coordinats
+    );
     if (!map) {
       initMap(4, defaultAddress);
     } else {
@@ -30,30 +25,12 @@ export const Map: React.FC<IMap> = ({ mapType, mapTypeControl = false }) => {
 
   const initEventListener = (): void => {
     if (map) {
-      google.maps.event.addListener(map, "click", function (e) {
-        coordinateToAddress(e.latLng);
-      });
+      google.maps.event.addListener(map, "click", function (e) {});
     }
   };
   useEffect(initEventListener, [map]);
 
-  const coordinateToAddress = async (coordinate: GoogleLatLng) => {
-    const geocoder = new google.maps.Geocoder();
-    await geocoder.geocode({ location: coordinate }, function (results, status) {
-      if (status === "OK") {
-        setMarker({
-          address: results[0].formatted_address,
-          latitude: coordinate.lat(),
-          longitude: coordinate.lng(),
-        });
-      }
-    });
-  };
-
   const addHomeMarker = (location: GoogleLatLng): GoogleMarker => {
-    //! home marker
-    console.log("location", location); //!
-
     const homeMarkerConst: GoogleMarker = new google.maps.Marker({
       position: location,
       map: map,
